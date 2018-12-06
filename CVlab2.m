@@ -1,0 +1,21 @@
+list_English_Img
+I = imread('C:\Users\DELL\OneDrive - Loughborough University\Attachments\number-plates.jpg');
+I = rgb2gray(I);
+I = im2double(I);
+figure,imhist(I);
+level = graythresh(I);
+I_bw = imbinarize(I,level);
+figure,imshow(I_bw);
+se1 = strel('square',3);
+erodeI = imerode(I_bw,se1);
+dilateI = imdilate(I_bw,se1);
+closeI = imclose(I_bw,se1);
+openI = imopen(I_bw,se1);
+figure,subplot(2,2,1),imshow(erodeI),title('erode');
+subplot(2,2,2),imshow(dilateI),title('dilate');
+subplot(2,2,3),imshow(closeI),title('close');
+subplot(2,2,4),imshow(openI),title('open');
+h = fspecial('sobel');
+c = imfilter(I_bw,h);
+c1 = conv2(I_bw,h);
+figure,subplot(1,2,1),imshow(c),title('imfilter');subplot(1,2,2),imshow(c1),title('conv2');

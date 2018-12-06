@@ -1,0 +1,10 @@
+I = imread('E:\应用宝照片备份\qiaoshan.jpg');
+I_y = rgb2ycbcr(I);
+YI = I_y(:,:,1);
+CbI = I_y(:,:,2);
+CrI = I_y(:,:,3);
+subplot(1,4,1),imshow(I);
+subplot(1,4,2),imshow(YI);
+subplot(1,4,3),imshow(CbI);
+subplot(1,4,4),imshow(CrI);
+figure,imshow(I_y);

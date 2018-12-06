@@ -1,0 +1,17 @@
+lena = imread('C:\Users\DELL\OneDrive - Loughborough University\Attachments\Lena.jpg');
+lena = rgb2gray(lena);
+lena = im2double(lena);
+se1 = 1/8*[-1,0,1;-2,0,2;-1,0,1];
+se2 = 1/8*[1,2,1;0,0,0;-1,-2,-1];
+lena1 = conv2(lena,se1);
+lena2 = conv2(lena,se2);
+figure,subplot(1,3,1),imshow(lena),title('lena');subplot(1,3,2),imshow(lena1),title('lena_x');subplot(1,3,3),imshow(lena2),title('lena_y');
+% [fx,fy] = gradient(se1);
+% [dx,dy] = gradient(se2);
+Ix = conv2(lena,se1,'same');
+Iy = conv2(lena,se2,'same');
+Im = sqrt(Ix.*Ix+Iy.*Iy);
+figure,imshow(Im);
+level = graythresh(lena);
+BW = edge(lena,'canny');
+figure,imshow(BW),title('canny');
