@@ -1,0 +1,16 @@
+A = imread('C:\Users\DELL\OneDrive - Loughborough University\Computer Vision\Lab5\testimages\113044.jpg');
+A = im2double(A);
+A1 = rgb2gray(A);
+[m,n] = size(A1);
+gseg = reshape(A1(:,:),m*n,1);
+AG = kmeans(gseg,2);
+AGray = reshape(AG,m,n);
+figure,imshow(label2rgb(AGray)),title('gray');
+lab_A = rgb2lab(A);
+a1 = reshape(lab_A(:,:,1),m*n,1);
+a2 = reshape(lab_A(:,:,2),m*n,1);
+a3 = reshape(lab_A(:,:,3),m*n,1);
+dat = [a1 a2 a3];
+Argb = kmeans(dat,3,'Replicates',5);
+Argb1 = reshape(Argb,m,n);
+figure,subplot(1,2,1),imshow(A),title('original');subplot(1,2,2),imshow(label2rgb(Argb1)),title('rgb');
